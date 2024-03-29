@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables
 
+import 'package:admin_panel/screens/all-orders-screen.dart';
 import 'package:admin_panel/screens/all-users-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
+                  onTap: () {
+                    Get.to(() => AllOrdersScreen());
+                  },
                   titleAlignment: ListTileTitleAlignment.center,
                   title: Text(
                     "Orders",
