@@ -58,7 +58,7 @@ class AllOrdersScreen extends StatelessWidget {
                     onTap: () {
                       Get.to(
                         () => SpecificCustomerOrderScreen(
-                            docId: snapshot.data!.docs[index]['uId'],
+                            docId: snapshot.data!.docs[index]['uid'],
                             customerName: snapshot.data!.docs[index]
                                 ['customerName']),
                       );
