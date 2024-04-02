@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../screens/all-orders-screen.dart';
+import '../screens/all-products-screen.dart';
 import '../screens/all-users-screen.dart';
 import '../utils/app-constant.dart';
 
@@ -94,6 +95,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: ListTile(
+                onTap: () {
+                  Get.to(() => AllProductsScreen());
+                },
                 titleAlignment: ListTileTitleAlignment.center,
                 title: Text(
                   "Products",
