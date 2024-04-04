@@ -1,14 +1,15 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
-import 'package:admin_panel/models/product-model.dart';
-import 'package:admin_panel/screens/product-details-screeen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/product-model.dart';
 import '../utils/app-constant.dart';
+import 'add-products-screen.dart';
+import 'product-details-screeen.dart';
 
 class AllProductsScreen extends StatefulWidget {
   const AllProductsScreen({super.key});
@@ -23,6 +24,15 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("All Products"),
+        actions: [
+          GestureDetector(
+            onTap: () => Get.to(() => AddProductScreen()),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.add),
+            ),
+          )
+        ],
         backgroundColor: AppConstant.appMainColor,
       ),
       body: FutureBuilder(
