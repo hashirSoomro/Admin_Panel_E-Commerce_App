@@ -29,8 +29,18 @@ class AddProductImagesController extends GetxController {
         title: "Choose Image",
         middleText: "Pick an Image from the camera or gallery",
         actions: [
-          ElevatedButton(onPressed: () {}, child: Text("Camera")),
-          ElevatedButton(onPressed: () {}, child: Text("Gallery")),
+          ElevatedButton(
+            onPressed: () {
+              selectImages('camera');
+            },
+            child: Text("Camera"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              selectImages('gallery');
+            },
+            child: Text("Gallery"),
+          ),
         ],
       );
     }
@@ -48,6 +58,30 @@ class AddProductImagesController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: AppConstant.appSecondaryColor,
           colorText: AppConstant.appTextColor);
+    }
+  }
+
+  Future<void> selectImages(String type) async {
+    List<XFile> imgs = [];
+    if (type == 'gallery') {
+      try {
+        imgs = await _picker.pickMultiImage(imageQuality: 80);
+        update();
+      } catch (e) {
+        print('Error $e');
+      }
+    } else {
+      final img =
+          await _picker.pickImage(source: ImageSource.camera, imageQuality: 80);
+
+      if (img != null) {
+        imgs.add(img);
+        update();
+      }
+    }
+    if (imgs.isNotEmpty) {
+      selectedImages.addAll(imgs);
+      update();
     }
   }
 }
