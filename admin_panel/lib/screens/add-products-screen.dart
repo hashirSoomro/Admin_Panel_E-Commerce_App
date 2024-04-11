@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:admin_panel/widgets/dropdown-categories-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -96,7 +97,9 @@ class AddProductScreen extends StatelessWidget {
                       )
                     : SizedBox.shrink();
               },
-            )
+            ),
+            // Show categories dropdown
+            DropDownCategoriesWidget(),
           ],
         ),
       ),
