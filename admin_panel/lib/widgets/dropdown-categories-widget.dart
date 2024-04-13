@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../controllers/category-dropdown-controller.dart';
 
@@ -14,20 +12,22 @@ class DropDownCategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryDropDownController>(
       init: CategoryDropDownController(),
-      builder: (categoryDropDownController) {
+      builder: (categoriesDropDownController) {
         return Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 0.0),
               child: Card(
                 elevation: 10,
                 child: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8.0),
                   child: DropdownButton<String>(
-                    value: categoryDropDownController.selectedCategoryId?.value,
+                    value:
+                        categoriesDropDownController.selectedCategoryId?.value,
                     items:
-                        categoryDropDownController.categories.map((category) {
+                        categoriesDropDownController.categories.map((category) {
                       return DropdownMenuItem<String>(
+                        value: category['categoryId'],
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -36,25 +36,26 @@ class DropDownCategoriesWidget extends StatelessWidget {
                                 category['categoryImg'].toString(),
                               ),
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text(category['categoryName'])
+                            const SizedBox(width: 20),
+                            Text(category['categoryName']),
                           ],
                         ),
                       );
                     }).toList(),
                     onChanged: (String? selectedValue) async {
-                      categoryDropDownController
+                      categoriesDropDownController
                           .setSelectedCategory(selectedValue);
-                      String? categoryName = await categoryDropDownController
+                      String? categoryName = await categoriesDropDownController
                           .getCategoryName(selectedValue);
-                      categoryDropDownController.setCategoryName(categoryName);
+                      categoriesDropDownController
+                          .setSelectedCategoryName(categoryName);
                     },
-                    hint: Text("Select Category"),
+                    hint: const Text(
+                      'Select a category',
+                    ),
                     isExpanded: true,
                     elevation: 10,
-                    underline: SizedBox.shrink(),
+                    underline: const SizedBox.shrink(),
                   ),
                 ),
               ),

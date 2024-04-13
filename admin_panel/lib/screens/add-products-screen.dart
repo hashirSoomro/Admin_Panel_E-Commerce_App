@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:admin_panel/controllers/is-sale-controller.dart';
 import 'package:admin_panel/widgets/dropdown-categories-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,8 @@ class AddProductScreen extends StatelessWidget {
 
   CategoryDropDownController categoryDropDownController =
       Get.put(CategoryDropDownController());
+
+  IsSaleController isSaleController = Get.put(IsSaleController());
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +103,31 @@ class AddProductScreen extends StatelessWidget {
             ),
             // Show categories dropdown
             DropDownCategoriesWidget(),
+
+            //isSale
+            GetBuilder<IsSaleController>(
+              init: IsSaleController(),
+              builder: (IsSaleController) {
+                return Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Is Sale"),
+                        Switch(
+                          value: isSaleController.isSale.value,
+                          activeColor: AppConstant.appMainColor,
+                          onChanged: (value) {
+                            isSaleController.toggleIsSale(value);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),
