@@ -6,6 +6,7 @@ import 'package:admin_panel/controllers/is-sale-controller.dart';
 import 'package:admin_panel/services/generate-ids-service.dart';
 import 'package:admin_panel/widgets/dropdown-categories-widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import '../controllers/category-dropdown-controller.dart';
@@ -167,122 +168,132 @@ class AddProductScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Obx(() {
-              return isSaleController.isSale.value
-                  ? Container(
-                      height: 65,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        cursorColor: AppConstant.appMainColor,
-                        textInputAction: TextInputAction.next,
-                        controller: salePriceController,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                          ),
-                          hintText: "Sale Price",
-                          hintStyle: TextStyle(
-                            fontSize: 12,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : SizedBox.shrink();
-            }),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 65,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              child: TextFormField(
-                cursorColor: AppConstant.appMainColor,
-                textInputAction: TextInputAction.next,
-                controller: fullPriceController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  hintText: "Full Price",
-                  hintStyle: TextStyle(
-                    fontSize: 12,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 65,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              child: TextFormField(
-                cursorColor: AppConstant.appMainColor,
-                textInputAction: TextInputAction.next,
-                controller: deliveryTimeController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  hintText: "Delivery Time",
-                  hintStyle: TextStyle(
-                    fontSize: 12,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 65,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              child: TextFormField(
-                cursorColor: AppConstant.appMainColor,
-                textInputAction: TextInputAction.next,
-                controller: productDescriptionController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  hintText: "Product Description",
-                  hintStyle: TextStyle(
-                    fontSize: 12,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Obx(() {
+            //   return isSaleController.isSale.value
+            //       ? Container(
+            //           height: 65,
+            //           margin: EdgeInsets.symmetric(horizontal: 10),
+            //           child: TextFormField(
+            //             cursorColor: AppConstant.appMainColor,
+            //             textInputAction: TextInputAction.next,
+            //             controller: salePriceController,
+            //             decoration: InputDecoration(
+            //               contentPadding: EdgeInsets.symmetric(
+            //                 horizontal: 10,
+            //               ),
+            //               hintText: "Sale Price",
+            //               hintStyle: TextStyle(
+            //                 fontSize: 12,
+            //               ),
+            //               border: OutlineInputBorder(
+            //                 borderRadius: BorderRadius.all(
+            //                   Radius.circular(
+            //                     10,
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         )
+            //       : SizedBox.shrink();
+            // }),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Container(
+            //   height: 65,
+            //   margin: EdgeInsets.symmetric(horizontal: 10),
+            //   child: TextFormField(
+            //     cursorColor: AppConstant.appMainColor,
+            //     textInputAction: TextInputAction.next,
+            //     controller: fullPriceController,
+            //     decoration: InputDecoration(
+            //       contentPadding: EdgeInsets.symmetric(
+            //         horizontal: 10,
+            //       ),
+            //       hintText: "Full Price",
+            //       hintStyle: TextStyle(
+            //         fontSize: 12,
+            //       ),
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.all(
+            //           Radius.circular(
+            //             10,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Container(
+            //   height: 65,
+            //   margin: EdgeInsets.symmetric(horizontal: 10),
+            //   child: TextFormField(
+            //     cursorColor: AppConstant.appMainColor,
+            //     textInputAction: TextInputAction.next,
+            //     controller: deliveryTimeController,
+            //     decoration: InputDecoration(
+            //       contentPadding: EdgeInsets.symmetric(
+            //         horizontal: 10,
+            //       ),
+            //       hintText: "Delivery Time",
+            //       hintStyle: TextStyle(
+            //         fontSize: 12,
+            //       ),
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.all(
+            //           Radius.circular(
+            //             10,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Container(
+            //   height: 65,
+            //   margin: EdgeInsets.symmetric(horizontal: 10),
+            //   child: TextFormField(
+            //     cursorColor: AppConstant.appMainColor,
+            //     textInputAction: TextInputAction.next,
+            //     controller: productDescriptionController,
+            //     decoration: InputDecoration(
+            //       contentPadding: EdgeInsets.symmetric(
+            //         horizontal: 10,
+            //       ),
+            //       hintText: "Product Description",
+            //       hintStyle: TextStyle(
+            //         fontSize: 12,
+            //       ),
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.all(
+            //           Radius.circular(
+            //             10,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             ElevatedButton(
               onPressed: () async {
-                String productId = await GenerateIds().generateProductId();
+                //String productId = await GenerateIds().generateProductId();
+                //print(productId);
+                try {
+                  EasyLoading.show();
+                  await addProductImagesController.uploadFunction(
+                      addProductImagesController.selectedImages);
+                  print(addProductImagesController.arrImagesUrl);
+                  EasyLoading.dismiss();
+                } catch (e) {
+                  print("error: $e");
+                }
               },
               child: Text("Upload"),
             ),
