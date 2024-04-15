@@ -35,11 +35,11 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
         ],
         backgroundColor: AppConstant.appMainColor,
       ),
-      body: FutureBuilder(
-        future: FirebaseFirestore.instance
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
             .collection('products')
             .orderBy('createdAt', descending: true)
-            .get(),
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Center(
