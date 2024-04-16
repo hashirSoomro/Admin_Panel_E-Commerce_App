@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
+import 'package:admin_panel/screens/edit-products-screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -101,7 +102,11 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
                     ),
                     title: Text(productModel.productName),
                     subtitle: Text(productModel.productId),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    trailing: GestureDetector(
+                      onTap: () => Get.to(
+                          () => EditProductScreen(productModel: productModel)),
+                      child: Icon(Icons.edit),
+                    ),
                   ),
                 );
               },
