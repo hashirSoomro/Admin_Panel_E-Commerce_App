@@ -118,7 +118,7 @@ class AddProductScreen extends StatelessWidget {
               //isSale
               GetBuilder<IsSaleController>(
                 init: IsSaleController(),
-                builder: (IsSaleController) {
+                builder: (isSaleController) {
                   return Card(
                     child: Padding(
                       padding: EdgeInsets.all(8),

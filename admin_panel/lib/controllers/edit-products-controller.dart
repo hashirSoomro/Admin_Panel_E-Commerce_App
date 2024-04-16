@@ -1,5 +1,6 @@
 import 'package:admin_panel/models/product-model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -29,5 +30,32 @@ class EditProductController extends GetxController {
         }
       }
     });
+  }
+
+  //delete images
+  Future deleteImagesFromStorage(String imageUrl) async {
+    final FirebaseStorage storage = FirebaseStorage.instance;
+    try {
+      Reference reference = storage.refFromURL(imageUrl);
+      await reference.delete();
+    } catch (e) {
+      print("Error:$e");
+    }
+  }
+
+  //collection
+  Future<void> deleteImageFromFirestore(
+      String imageUrl, String productId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('products')
+          .doc(productId)
+          .update({
+        'productImages': FieldValue.arrayRemove([imageUrl])
+      });
+      update();
+    } catch (e) {
+      print("Error:$e");
+    }
   }
 }
