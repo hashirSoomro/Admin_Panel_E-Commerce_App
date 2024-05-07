@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/all-categories-screen.dart';
 import '../screens/all-orders-screen.dart';
 import '../screens/all-products-screen.dart';
 import '../screens/all-users-screen.dart';
@@ -115,8 +116,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
               leading: Icon(Icons.category, color: AppConstant.appTextColor),
               onTap: () {
-                // Get.back();
-                // Get.to(() => AllOrdersScreen());
+                Get.back();
+                Get.to(() => AllCategoriesScreen());
               },
             ),
           ),
