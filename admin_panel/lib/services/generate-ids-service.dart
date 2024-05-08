@@ -11,4 +11,13 @@ class GenerateIds {
     formattedProductId = "easy-shopping-${uuid.substring(0, 5)}";
     return formattedProductId;
   }
+
+  String generateCategoryId() {
+    String formattedCategoryId;
+    String uuid = const Uuid().v4();
+
+    //customize id
+    formattedCategoryId = "easy-shopping-${uuid.substring(0, 5)}";
+    return formattedCategoryId;
+  }
 }

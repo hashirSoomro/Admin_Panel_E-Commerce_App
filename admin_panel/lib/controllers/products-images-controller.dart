@@ -92,21 +92,32 @@ class AddProductImagesController extends GetxController {
     update();
   }
 
-  Future<void> uploadFunction(List<XFile> _images) async {
+  Future<void> uploadFunction(String InfoImage, List<XFile> _images) async {
     arrImagesUrl.clear();
     for (int i = 0; i < _images.length; i++) {
-      dynamic imageUrl = await uploadFile(_images[i]);
+      dynamic imageUrl = await uploadFile(InfoImage, _images[i]);
       arrImagesUrl.add(imageUrl.toString());
     }
     update();
   }
 
-  Future<String> uploadFile(XFile _image) async {
-    TaskSnapshot reference = await storageRef
-        .ref()
-        .child("product-images")
-        .child(_image.name + DateTime.now().toString())
-        .putFile(File(_image.path));
-    return await reference.ref.getDownloadURL();
+  Future<String?> uploadFile(String InfoImage, XFile _image) async {
+    TaskSnapshot? reference = null;
+    if (InfoImage == 'Category') {
+      print("Category");
+      reference = await storageRef
+          .ref()
+          .child("category-images")
+          .child(_image.name + DateTime.now().toString())
+          .putFile(File(_image.path));
+    } else if (InfoImage == 'Product') {
+      print("Product");
+      reference = await storageRef
+          .ref()
+          .child("product-images")
+          .child(_image.name + DateTime.now().toString())
+          .putFile(File(_image.path));
+    }
+    return await reference!.ref.getDownloadURL();
   }
 }

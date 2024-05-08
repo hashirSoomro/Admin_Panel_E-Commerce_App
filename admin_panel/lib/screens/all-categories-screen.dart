@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, unnecessary_const
 
 import 'package:admin_panel/models/categories-model.dart';
+import 'package:admin_panel/screens/add-categories-screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,17 @@ class AllCategoriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("All Categories"),
+        actions: [
+          InkWell(
+            onTap: () {
+              Get.to(() => AddCategoriesScreen());
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.add),
+            ),
+          )
+        ],
         backgroundColor: AppConstant.appMainColor,
       ),
       body: StreamBuilder(
