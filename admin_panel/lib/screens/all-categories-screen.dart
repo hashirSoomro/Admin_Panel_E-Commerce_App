@@ -2,6 +2,7 @@
 
 import 'package:admin_panel/models/categories-model.dart';
 import 'package:admin_panel/screens/add-categories-screen.dart';
+import 'package:admin_panel/screens/edit-categories-screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -124,7 +125,10 @@ class AllCategoriesScreen extends StatelessWidget {
                       title: Text(categoryModel.categoryName),
                       subtitle: Text(categoryModel.categoryId),
                       trailing: GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.to(
+                          () =>
+                              EditCategoryScreen(categoryModel: categoryModel),
+                        ),
                         child: const Icon(Icons.edit),
                       ),
                     ),
