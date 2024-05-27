@@ -101,7 +101,7 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 10,
                   ),
-                  hintText: "Product Name",
+                  hintText: "Category Name",
                   hintStyle: TextStyle(
                     fontSize: 12,
                   ),

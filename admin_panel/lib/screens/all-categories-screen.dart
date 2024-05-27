@@ -11,6 +11,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
 
+import '../controllers/edit_category_controller.dart';
 import '../utils/app-constant.dart';
 
 class AllCategoriesScreen extends StatelessWidget {
@@ -93,6 +94,18 @@ class AllCategoriesScreen extends StatelessWidget {
                             onConfirm: () async {
                               Get.back();
                               EasyLoading.show(status: "Please wait...");
+                              EditCategoryController editCategoryController =
+                                  Get.put(EditCategoryController(
+                                      categoryModel: categoryModel));
+
+                              await editCategoryController
+                                  .deleteImageFromFirestore(
+                                      categoryModel.categoryImg,
+                                      categoryModel.categoryId);
+                              await editCategoryController
+                                  .deleteWholeCategoryFromFirestore(
+                                      categoryModel.categoryImg,
+                                      categoryModel.categoryId);
                               // await deleteImagesFromFirebase(
                               //     productModel.productImages);
 
